@@ -4,7 +4,7 @@
     runtime: node
     buildCommand: npm install && npm run build
     startCommand: npm start
-    publishDirectory: ./
+    publishDirectory: .next
     envVars:
       - key: NODE_VERSION
         value: 18.17.0
