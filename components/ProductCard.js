@@ -5,7 +5,7 @@ export default function ProductCard({ product, onAddToCart }) {
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-4">
-      <div className="w-full h-32 bg-gray-200 rounded mb-4"></div>
+      <img src={product.image} alt={product.name} className="w-full h-32 object-contain rounded mb-4" />
       <h3 className="font-semibold mb-2">{product.name}</h3>
       <p className="text-sm text-gray-600 mb-2">{product.category}</p>
       <div className="flex items-center justify-between mb-4">

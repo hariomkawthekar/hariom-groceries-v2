@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white mt-16 py-12">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-2xl font-bold mb-4">Hariom Groceries</h3>
+          <h3 className="text-2xl font-bold mb-4">Hariom Grocery</h3>
           <p className="text-gray-400">Fresh groceries delivered to your door</p>
         </div>
         <div>
@@ -18,8 +18,9 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="font-semibold mb-4">Contact</h4>
-          <p className="text-gray-400">+91 98765 43210</p>
-          <p className="text-gray-400">hello@hariom.com</p>
+          <p className="text-gray-400">+91 9657346501</p>
+          <p className="text-gray-400">+91 9923440147</p>
+          <p className="text-gray-400">vinayakkawthekar@gmail..com</p>
         </div>
         <div>
           <h4 className="font-semibold mb-4">Newsletter</h4>
@@ -28,7 +29,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-800 mt-8 pt-8 max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
-        <p>© 2026 Hariom Groceries. All rights reserved.</p>
+        <p>© 2026 Hariom Grocery. All rights reserved.</p>
       </div>
     </footer>
   )

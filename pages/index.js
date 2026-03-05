@@ -6,17 +6,6 @@ import { FiFilter, FiGrid, FiList, FiChevronDown } from 'react-icons/fi'
 // Sample product data
 const products = [
   {
-    id: 1,
-    name: 'Fresh Organic Bananas',
-    category: 'Fruits',
-    price: 60,
-    unit: 'dozen',
-    image: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=500',
-    discount: 10,
-    originalPrice: 66,
-    inStock: true
-  },
-  {
     id: 2,
     name: 'Premium Basmati Rice',
     category: 'Grains',
@@ -25,17 +14,7 @@ const products = [
     image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500',
     inStock: true
   },
-  {
-    id: 3,
-    name: 'Farm Fresh Eggs',
-    category: 'Dairy',
-    price: 85,
-    unit: 'dozen',
-    image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500',
-    discount: 15,
-    originalPrice: 100,
-    inStock: true
-  },
+  
   {
     id: 4,
     name: 'Organic Whole Wheat Flour',
@@ -43,6 +22,24 @@ const products = [
     price: 45,
     unit: 'kg',
     image: 'https://images.unsplash.com/photo-1585518419759-434cf4261d5e?w=500',
+    inStock: true
+  },
+  {
+    id: 5,
+    name: 'Sunflower Oil',
+    category: 'Oil',
+    price: 600,
+    unit: '5 liter bottle',
+    image: '/images/fortune sunflower oil.jpg',
+    inStock: true
+  },
+  {
+    id: 6,
+    name: 'Amul Gold',
+    category: 'Dairy',
+    price: 55,
+    unit: 'liter',
+    image: '/images/Amul-gold.webp',
     inStock: true
   }
 ]

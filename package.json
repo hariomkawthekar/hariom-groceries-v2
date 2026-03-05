@@ -1,7 +1,7 @@
 {
   "name": "hariom-groceries",
   "version": "1.0.0",
-  "description": "Hariom Groceries - Elegant Grocery Store",
+  "description": "Hariom Grocery - Elegant Grocery Store",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -23,6 +23,6 @@
     "tailwindcss": "^3.3.3"
   },
   "keywords": ["grocery", "ecommerce", "nextjs"],
-  "author": "Hariom Groceries",
+  "author": "Hariom Grocery",
   "license": "MIT"
 }
