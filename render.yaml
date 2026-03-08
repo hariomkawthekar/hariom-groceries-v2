@@ -1,4 +1,4 @@
-﻿services:
+services:
   - type: web
     name: hariom-groceries
     runtime: node
@@ -8,3 +8,7 @@
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: ""
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"

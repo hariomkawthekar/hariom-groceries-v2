@@ -2,11 +2,11 @@
   "name": "hariom-groceries",
   "version": "1.0.0",
   "description": "Hariom Grocery - Elegant Grocery Store",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "export": "next export",
     "lint": "next lint"
   },
@@ -19,10 +19,15 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
+    "js-yaml": "^4.1.1",
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3"
   },
-  "keywords": ["grocery", "ecommerce", "nextjs"],
+  "keywords": [
+    "grocery",
+    "ecommerce",
+    "nextjs"
+  ],
   "author": "Hariom Grocery",
   "license": "MIT"
 }
