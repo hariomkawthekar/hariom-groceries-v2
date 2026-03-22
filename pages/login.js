@@ -1,15 +1,27 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Login() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { login } = useAuth()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    router.push('/')
+    setError('')
+    setLoading(true)
+    try {
+      await login(email, password)
+      router.push('/')
+    } catch (err) {
+      setError('Invalid credentials - Try email: test@test.com, pass: 123456')
+    }
+    setLoading(false)
   }
 
   return (
@@ -46,12 +58,14 @@ export default function Login() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-primary text-white font-semibold py-2 rounded-lg hover:bg-opacity-90 transition"
-          >
-            Sign In
-          </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary text-white font-semibold py-2 rounded-lg hover:bg-opacity-90 transition disabled:opacity-50"
+            >
+              {loading ? 'Signing In...' : 'Sign In'}
+            </button>
+            {error && <div className="mt-3 p-3 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
         </form>
 
         <p className="text-center mt-6 text-gray-600">

@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { FiShoppingCart, FiShoppingBag, FiSearch } from 'react-icons/fi'
+import { useAuth } from '@/contexts/AuthContext'
 import { useState } from 'react'
 
 export default function Header({ cartItemCount, onCartClick, onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const { currentUser } = useAuth();
   return (
     <header className="bg-white shadow-sm sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -27,7 +29,7 @@ export default function Header({ cartItemCount, onCartClick, onSearch }) {
           </div>
         </div>
         <div className="flex items-center space-x-6">
-          <Link href="/login" className="hidden md:block hover:text-primary">
+          <Link href={currentUser ? '/profile' : '/login'} className="hidden md:block hover:text-primary">
             Account
           </Link>
           <button onClick={onCartClick} className="flex items-center space-x-2 hover:text-primary">

@@ -4,61 +4,20 @@ import ProductCard from '@/components/ProductCard'
 import { motion } from 'framer-motion'
 import { FiGrid, FiList } from 'react-icons/fi'
 
-// Sample product data
-const products = [
-  {
-    id: 1,
-    name: 'Premium Basmati Rice',
-    category: 'Grains',
-    price: 80,
-    unit: 'kg',
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500',
-    inStock: true
-  },
-  {
-    id: 2,
-    name: 'India Gate Basmati Rice',
-    category: 'Grains',
-    price: 120,
-    unit: 'kg',
-    image: '/images/india Gate Basmati Rice.jfif',
-    inStock: true
-  },
-  {
-    id: 3,
-    name: 'Samrat Atta',
-    category: 'Grains',
-    price: 310,
-    unit: '5kg',
-    image: '/images/Samrat Atta.jfif',
-    inStock: true
-  },
-  {
-    id: 4,
-    name: 'Sunflower Oil',
-    category: 'Oil',
-    price: 600,
-    unit: '5 liter bottle',
-    image: '/images/fortune sunflower oil.jpg',
-    inStock: true
-  },
-  {
-    id: 5,
-    name: 'Amul Gold',
-    category: 'Dairy',
-    price: 55,
-    unit: 'liter',
-    image: '/images/Amul-gold.webp',
-    inStock: true
-  }
-]
-
 export default function Home({ cartItems, setCartItems }) {
   const router = useRouter()
+  const [products, setProducts] = useState([])
   const [internalSearchQuery, setInternalSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('popular')
   const [view, setView] = useState('grid')
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(setProducts)
+      .catch(console.error)
+  }, [])
 
   // Sync search query from URL params
   useEffect(() => {
@@ -227,4 +186,3 @@ export default function Home({ cartItems, setCartItems }) {
     </div>
   )
 }
-

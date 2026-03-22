@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Signup() {
   const router = useRouter()
@@ -8,14 +9,25 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { signup } = useAuth()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
     if (password !== confirmPassword) {
-      alert("Passwords don't match!")
+      setError("Passwords don't match!")
       return
     }
-    router.push('/login')
+    setLoading(true)
+    try {
+      await signup(email, password, name)
+      router.push('/')
+    } catch (err) {
+      setError('Failed to create account')
+    }
+    setLoading(false)
   }
 
   return (
@@ -80,13 +92,15 @@ export default function Signup() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-primary text-white font-semibold py-2 rounded-lg hover:bg-opacity-90 transition"
-          >
-            Create Account
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary text-white font-semibold py-2 rounded-lg hover:bg-opacity-90 transition disabled:opacity-50"
+            >
+              {loading ? 'Creating Account...' : 'Create Account'}
+            </button>
+            {error && <div className="mt-3 p-3 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
+          </form>
 
         <p className="text-center mt-6 text-gray-600">
           Already have an account?{' '}
