@@ -11,9 +11,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "bcryptjs": "^3.0.3",
     "firebase": "^12.11.0",
     "framer-motion": "^10.16.4",
+    "jsonwebtoken": "^9.0.3",
     "next": "^14.0.0",
+    "prisma": "^5.21.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0"

@@ -1,8 +1,9 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ProductCard from '@/components/ProductCard'
 import { motion } from 'framer-motion'
 import { FiGrid, FiList } from 'react-icons/fi'
+import Link from 'next/link'
 
 export default function Home({ cartItems, setCartItems }) {
   const router = useRouter()
@@ -64,7 +65,10 @@ export default function Home({ cartItems, setCartItems }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 mb-3">Category</label>
+          <Link href="/categories" className="flex items-center justify-between group cursor-pointer mb-3">
+            <label className="block text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors cursor-pointer">Category</label>
+            <span className="text-xs font-medium text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">View Page &rarr;</span>
+          </Link>
           <div className="space-y-2">
             {categories.map(cat => (
               <button

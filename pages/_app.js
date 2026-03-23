@@ -1,9 +1,10 @@
-﻿import '@/styles/globals.css'
+import '@/styles/globals.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CartSidebar from '@/components/CartSidebar'
+import BottomNav from '@/components/BottomNav'
 
 import { AuthProvider } from '@/contexts/AuthContext'
 
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }) {
           />
         </main>
         <Footer />
+        <BottomNav cartItemCount={cartItems.length} />
         <CartSidebar 
           isOpen={isCartOpen}
           onClose={() => setIsCartOpen(false)}
