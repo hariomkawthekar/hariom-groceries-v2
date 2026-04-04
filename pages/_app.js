@@ -29,7 +29,10 @@ export default function App({ Component, pageProps }) {
           />
         </main>
         <Footer />
-        <BottomNav cartItemCount={cartItems.length} />
+        <BottomNav 
+          cartItemCount={cartItems.length}
+          onCartClick={() => setIsCartOpen(true)}
+        />
         <CartSidebar 
           isOpen={isCartOpen}
           onClose={() => setIsCartOpen(false)}

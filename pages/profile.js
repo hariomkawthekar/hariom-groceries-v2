@@ -21,7 +21,7 @@ export default function Profile() {
     pincode: ''
   });
   const [savedAddresses, setSavedAddresses] = useState([]);
-  const [mockOrders, setMockOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     if (!currentUser) {
@@ -54,12 +54,26 @@ export default function Profile() {
       }
     ]);
 
-    // Mock recent orders
-    setMockOrders([
-      { id: '#12345', date: '2024-10-05', total: '₹849', status: 'Delivered' },
-      { id: '#12346', date: '2024-10-03', total: '₹1,299', status: 'Delivered' },
-      { id: '#12347', date: '2024-10-01', total: '₹599', status: 'Delivered' }
-    ]);
+    // Fetch recent orders
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(`/api/orders?email=${currentUser.email}`);
+        if (response.ok) {
+          const data = await response.json();
+          const formattedOrders = data.map(order => ({
+            id: `#${order.id}`,
+            date: new Date(order.createdAt).toISOString().split('T')[0],
+            total: `₹${order.total}`,
+            status: order.status
+          }));
+          setOrders(formattedOrders);
+        }
+      } catch (error) {
+        console.error('Failed to fetch orders', error);
+      }
+    };
+    
+    fetchOrders();
   }, [currentUser, router]);
 
   const handleProfileSave = () => {
@@ -171,7 +185,7 @@ export default function Profile() {
                 </tr>
               </thead>
               <tbody>
-                {mockOrders.map((order) => (
+                {orders.map((order) => (
                   <tr key={order.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="py-4 font-medium">{order.id}</td>
                     <td className="py-4">{order.date}</td>

@@ -10,6 +10,7 @@ export default function Checkout({ cartItems, setCartItems }) {
   const { currentUser } = useAuth()
   const [loading, setLoading] = useState(false)
   const [orderPlaced, setOrderPlaced] = useState(false)
+  const [orderTotal, setOrderTotal] = useState(0)
   const [formData, setFormData] = useState({
     fullName: currentUser?.name || '',
     email: currentUser?.email || '',
@@ -27,12 +28,34 @@ export default function Checkout({ cartItems, setCartItems }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    // Mock order processing
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    // Clear cart
-    setCartItems([])
-    setOrderPlaced(true)
-    setLoading(false)
+    
+    try {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          total,
+          items: cartItems,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to place order');
+      }
+
+      setOrderTotal(total)
+      // Clear cart
+      setCartItems([])
+      setOrderPlaced(true)
+    } catch (error) {
+      console.error(error);
+      alert('Error placing order. Please try again.');
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (orderPlaced) {
@@ -48,7 +71,7 @@ export default function Checkout({ cartItems, setCartItems }) {
           </div>
           <h1 className="text-4xl font-bold text-green-700 mb-4">Order Placed!</h1>
           <p className="text-xl text-gray-600 mb-8">Thank you for your purchase</p>
-          <p className="text-3xl font-bold text-primary mb-8">₹{total}</p>
+          <p className="text-3xl font-bold text-primary mb-8">₹{orderTotal}</p>
           <Link href="/" className="inline-flex items-center space-x-2 bg-primary text-white px-8 py-4 rounded-2xl font-semibold hover:bg-opacity-90 transition-all shadow-lg">
             <FiHome className="h-5 w-5" />
             <span>Continue Shopping</span>
